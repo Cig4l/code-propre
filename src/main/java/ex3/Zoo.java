@@ -1,49 +1,66 @@
 package ex3;
-public class Zoo {
 
+import java.util.ArrayList;
+import java.util.List;
+
+public class Zoo {
+	/** nom : nom du zoo */
 	private String nom;
-	private SavaneAfricaine savaneAfricaine;
-	private ZoneCarnivore zoneCarnivore;
-	private FermeReptile fermeReptile;
-	private Aquarium aquarium;
-	
-	public Zoo(String nom){
+	/** types : types des animaux */
+	private List<Animal> animals = new ArrayList<>();
+
+	/**
+	 * Constructeur
+	 * @param nom : nom du zoo
+	 */
+	public Zoo(String nom) {
 		this.nom = nom;
 	}
-	
-	public void addAnimal(String nomAnimal, String typeAnimal, String comportement){
-		if (typeAnimal.equals("MAMMIFERE") && comportement.equals("CARNIVORE")){
-			zoneCarnivore.addAnimal(typeAnimal, nomAnimal, comportement);
-		}
-		else if (typeAnimal.equals("MAMMIFERE") && comportement.equals("HERBIVORE")){
-			savaneAfricaine.addAnimal(typeAnimal, nomAnimal, comportement);
-		}
-		else if (typeAnimal.equals("REPTILE")){
-			fermeReptile.addAnimal(typeAnimal, nomAnimal, comportement);
-		}
-		else if (typeAnimal.equals("POISSON")){
-			aquarium.addAnimal(typeAnimal, nomAnimal, comportement);
-		}
-	}
-	
-	public void afficherListeAnimaux(){
-		savaneAfricaine.afficherListeAnimaux();
-		zoneCarnivore.afficherListeAnimaux();
-		fermeReptile.afficherListeAnimaux();
-		aquarium.afficherListeAnimaux();
+
+	/**
+	 * @param animal : animal à ajouter
+	 */
+	public void addAnimal(Animal animal) {
+		animals.add(animal);
 	}
 
-	/** Getter for nom
-	 * @return the nom
+	/**
+	 * Affiche les informations sur les animaux du zoo
+	 */
+	public void afficherListeAnimaux() {
+		for (int i = 0; i < animals.size(); i++) {
+			System.out.println(animals.get(i).getNom() + " " + animals.get(i).getType() + " " + animals.get(i).getComportement());
+		}
+	}
+
+	/**
+	 * @return le nombre d'animaux dans le zoo
+	 */
+	public int obtenirNombreAnimaux() {
+		return animals.size();
+	}
+
+	/**
+	 * Getter for nom
+	 * * @return the nom
 	 */
 	public String getNom() {
 		return nom;
 	}
 
-	/** Setter
+	/**
+	 * Setter
 	 * @param nom the nom to set
 	 */
 	public void setNom(String nom) {
 		this.nom = nom;
+	}
+
+	/**
+	 * Getter for animals
+	 * * @return the animals
+	 */
+	public List<Animal> getAnimals() {
+		return animals;
 	}
 }
